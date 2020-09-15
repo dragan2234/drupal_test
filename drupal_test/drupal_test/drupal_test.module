@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Custom drupal test module file.
+ */
+
+/**
+ * Implements hook_form_alter() for altering job CT node form.
+ *
+ * Disabling field_employment_type field on job CT
+ * when "freelance" option is set.
+ */
+function drupal_test_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'job_node_form' && $form_state['build_info']['args'][0]->field_employment_type[LANGUAGE_NONE][0]['value'] == 'freelance') {
+    $form['field_employment_type'][LANGUAGE_NONE]['#attributes'] = array('disabled' => 'disabled');
+  }
+}
